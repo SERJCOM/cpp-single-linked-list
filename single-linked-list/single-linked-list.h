@@ -156,13 +156,39 @@ public:
 
     }
 
+    // template<typename T>
+    // SingleLinkedList(T begin, T end){
+    //     size_ = 0;
+    //     // for(auto i = begin; i != end; i++){
+    //     //     PushBack(*i);
+    //     // }
+    //     auto it = begin;
+    //     it++;
+	// 	for(it; it != end; it++){
+	// 		PushFront(*it);
+	// 	}
+
+    // }
+
     template<typename T>
     SingleLinkedList(T begin, T end){
         size_ = 0;
-        for(auto i = begin; i != end; i++){
-            PushBack(*i);
+        Node* temp_pnt(&head_);
+        try{
+            for(auto it = begin; it != end; it++){
+                temp_pnt->next_node = new Node(*it, nullptr);
+                temp_pnt = temp_pnt->next_node;
+                size_++;
+            }
         }
-
+        catch(std::bad_alloc error){
+            Node* node = temp_pnt;
+            while(node){
+                Node* temp_node = node;
+                node = node->next_node;
+                delete temp_node;
+            }
+        }
     }
 
     SingleLinkedList(std::initializer_list<Type> values) {
@@ -174,6 +200,7 @@ public:
         if(this != &other){
             size_ = 0;
             SingleLinkedList temp(other.begin(), other.end());
+			//SingleLinkedList temp(other.end(), other.begin());
             swap(temp);
         }
     }
