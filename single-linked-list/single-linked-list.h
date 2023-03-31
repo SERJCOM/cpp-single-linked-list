@@ -139,36 +139,6 @@ public:
        size_++;
     }
 
-    void PushBack(const Type& value){
-        
-        if(size_ > 0){ 
-            Node* lastNode = head_.next_node;
-            while(lastNode->next_node != nullptr){
-                lastNode = lastNode->next_node;
-            }
-            lastNode->next_node = new Node(value, lastNode->next_node);
-            size_++;
-        }
-
-        else{
-            PushFront(value);
-        }
-
-    }
-
-    // template<typename T>
-    // SingleLinkedList(T begin, T end){
-    //     size_ = 0;
-    //     // for(auto i = begin; i != end; i++){
-    //     //     PushBack(*i);
-    //     // }
-    //     auto it = begin;
-    //     it++;
-	// 	for(it; it != end; it++){
-	// 		PushFront(*it);
-	// 	}
-
-    // }
 
     template<typename T>
     SingleLinkedList(T begin, T end){
@@ -192,15 +162,13 @@ public:
     }
 
     SingleLinkedList(std::initializer_list<Type> values) {
-        size_ = 0;
-        *this = SingleLinkedList(values.begin(), values.end());
+        SingleLinkedList temp(values.begin(), values.end());
+        swap(temp);
     }
 
     SingleLinkedList(const SingleLinkedList& other) {
         if(this != &other){
-            size_ = 0;
             SingleLinkedList temp(other.begin(), other.end());
-			//SingleLinkedList temp(other.end(), other.begin());
             swap(temp);
         }
     }
