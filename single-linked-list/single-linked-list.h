@@ -131,16 +131,12 @@ public:
     template<typename T>
     void CreateLinkedList(T begin, T end){
         size_ = 0;
-
         Node* temp_pnt(&head_);
-        
-            for(auto it = begin; it != end; it++){
-                temp_pnt->next_node = new Node(*it, nullptr);
-                temp_pnt = temp_pnt->next_node;
-                size_++;
-            }
-        
-        
+        for(auto it = begin; it != end; it++){
+            temp_pnt->next_node = new Node(*it, nullptr);
+            temp_pnt = temp_pnt->next_node;
+            size_++;
+        }
     }
 
     SingleLinkedList(std::initializer_list<Type> values){
