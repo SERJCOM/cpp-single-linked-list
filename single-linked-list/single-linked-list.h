@@ -129,33 +129,27 @@ public:
 
 
     template<typename T>
-    SingleLinkedList(T begin, T end){
+    void CreateLinkedList(T begin, T end){
         size_ = 0;
 
         Node* temp_pnt(&head_);
-        try{
+        
             for(auto it = begin; it != end; it++){
                 temp_pnt->next_node = new Node(*it, nullptr);
                 temp_pnt = temp_pnt->next_node;
                 size_++;
             }
-        }
-        catch(std::bad_alloc error){
-            Node* node = temp_pnt;
-            while(node){
-                Node* temp_node = node;
-                node = node->next_node;
-                delete temp_node;
-            }
-        }
+        
+        
     }
 
-    SingleLinkedList(std::initializer_list<Type> values):SingleLinkedList(values.begin(), values.end()) {}
+    SingleLinkedList(std::initializer_list<Type> values){
+        CreateLinkedList(values.begin(), values.end());
+    }
 
     SingleLinkedList(const SingleLinkedList& other) {
         if(this != &other){
-            SingleLinkedList temp(other.begin(), other.end());
-            swap(temp);
+            CreateLinkedList(other.begin(), other.end());
         }
     }
 
