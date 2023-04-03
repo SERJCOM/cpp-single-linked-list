@@ -139,13 +139,18 @@ public:
         }
     }
 
+
     SingleLinkedList(std::initializer_list<Type> values){
-        CreateLinkedList(values.begin(), values.end());
+        SingleLinkedList temp;
+        temp.CreateLinkedList(values.begin(), values.end());
+        swap(temp);
     }
 
     SingleLinkedList(const SingleLinkedList& other) {
         if(this != &other){
-            CreateLinkedList(other.begin(), other.end());
+            SingleLinkedList temp;
+            temp.CreateLinkedList(other.begin(), other.end());
+            swap(temp);
         }
     }
 
