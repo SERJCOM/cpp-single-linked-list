@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/sergei/prog/practicum/cpp-single-linked-list/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/temp.dir/main.cpp.o -c /home/sergei/prog/practicum/cpp-single-linked-list/single-linked-list/main.cpp",
+  "file": "/home/sergei/prog/practicum/cpp-single-linked-list/single-linked-list/main.cpp"
+}
+]
